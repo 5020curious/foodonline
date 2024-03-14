@@ -14,13 +14,13 @@ def register_user(request):
             # user.role = User.CUSTOMER
             # user.set_password(password) 
             # form.save()
-            
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             phone_number = form.cleaned_data['phone_number']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = User.objects.create_user(first_name=first_name, last_name=last_name, phone_number=phone_number, email=email, password=password)
+            user.role = User.CUSTOMER
             user.save()
             messages.success(request, "Your account has been registered successfully!")            
             return redirect('register_user')
